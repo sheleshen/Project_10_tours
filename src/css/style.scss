@@ -1,0 +1,58 @@
+// ТЕКСТ И ССЫЛКИ
+a,
+p,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+    @apply max-w-7xl m-auto px-5 md:px-4 lg:px-3;
+}
+
+.montserrat {
+    font-family: 'Montserrat', sans-serif;
+}
+
+// Туры
+.rounded-80 {
+    border-radius: 80px;
+
+    @media (max-width: 600px) {
+        border-radius: 20px;
+    }
+    
+    @media (min-width: 600px) and (max-width: 768px) {
+        border-radius: 30px;
+    }
+    
+    @media (min-width: 768px) and (max-width: 1024px) {
+        border-radius: 50px;
+    }
+    
+    @media (min-width: 1024px) and (max-width: 1280px) {
+        border-radius: 60px;
+    }
+}
+
+.rounded-40 {
+    border-radius: 40px;
+}
+
+.btn-primary {
+    @apply px-3 py-2 xl:px-4 xl:py-3 text-sm md:text-base  xl:text-lg text-white bg-indigo-900 rounded-xl;
+}
+
+.btn-secondary {
+    @apply px-3 py-2 xl:px-4 xl:py-3 text-sm md:text-base xl:text-lg border border-indigo-900 text-indigo-900 rounded-xl;
+}
+
+.zoom {
+    zoom: 0.8;
+}

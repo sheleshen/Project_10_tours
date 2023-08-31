@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+        <!-- Обнуляем стили браузера -->
+        <!-- <link rel="stylesheet" href="./css/reset.css" /> -->
+
+        <!-- Подключаем стили -->
+        <link rel="stylesheet" href="./css/style.css" />
+        <link rel="stylesheet" href="./css/style.scss" />
+
+        <!-- Шрифт Montserrat для заголовков -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Шрифт Ubuntu для текста -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Иконки -->
+        <script
+            src="https://kit.fontawesome.com/9d86f44a3a.js"
+            crossorigin="anonymous"
+        ></script>
+
+        <title>Туры</title>
+    </head>
+
+    <body>
+        <section class="bg-slate-300 rounded-80">
+            <div class="container pt-10 pb-5 flex flex-col gap-3 justify-center md:gap-6 lg:pt-20 lg:pb-10 lg:flex-row lg:gap-12 items-center">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white">Наши туры</h1>
+                <p class="text-gray-100 text-base sm:text-lg md:text-xl lg:text-2xl pt-2 text-center lg:text-start">
+                    Отправляйтесь в свое незабываемое путешествие вместе с нами
+                </p>
+            </div>
+            <div class="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pb-20">
+                <div class="overflow-hidden">
+                    <div class="p-8 relative bg-white rounded-40">
+                        <img
+                            class="rounded-40"
+                            src="/src/images/bali3.jpeg"
+                            alt=""
+                        />
+                        <div class="pt-4 relative">
+                            <span
+                                class="montserrat text-base md:text-base lg:text-lg font-medium text-gray-400"
+                            >
+                                Индонезия
+                            </span>
+                            <span
+                                class="text-gray-400 pt-6 px-1"
+                                aria-hidden="true"
+                                >&middot;</span
+                            >
+                            <span
+                                class="montserrat text-base md:text-base lg:text-lg font-medium text-gray-400"
+                            >
+                                Остров Бали
+                            </span>
+                        </div>
+                        <p
+                            class="montserrat text-xl md:text-2xl lg:text-3xl font-medium text-indigo-900 pt-3"
+                        >
+                            Novotel Phuket Kata Avista Resort and Spa
+                        </p>
+                        <p class="text-sm md:text-base font-extrabold p-2.5 rounded-full bg-slate-50 absolute top-12 left-12 text-orange-300">8.5</p>
+                        <img class="absolute bottom-0 left-11 zoom bg-gray-300"
+                            src="/src/images/line-tickets.png"
+                            alt="Отрывная часть"
+                        />
+                    </div>
+                    <div class="p-8 bg-white rounded-40">
+                        <div class="flex gap-4 pb-3">
+                            <p class="font-medium text-base md:text-lg text-gray-400">01.08.2023</p>
+                            <p class="font-medium text-base md:text-lg text-gray-400">14.08.2023</p>
+                        </div>
+                        <p class="montserrat text-2xl md:text-3xl lg:text-4xl font-medium text-gray-900 pb-4">15 000 руб.</p>
+                        <div class="flex gap-4">
+                            <button class="btn-primary">Забронировать</button>
+                            <button class="btn-secondary">В избранное</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="overflow-hidden">
+                    <div class="p-8 relative bg-white rounded-40">
+                        <img
+                            class="rounded-40"
+                            src="/src/images/bali3.jpeg"
+                            alt=""
+                        />
+                        <div class="pt-4 relative">
+                            <span
+                                class="montserrat text-lg font-medium text-gray-400"
+                            >
+                                Индонезия
+                            </span>
+                            <span
+                                class="text-gray-400 pt-6 px-1"
+                                aria-hidden="true"
+                                >&middot;</span
+                            >
+                            <span
+                                class="montserrat text-lg font-medium text-gray-400"
+                            >
+                                Остров Бали
+                            </span>
+                        </div>
+                        <p
+                            class="montserrat text-3xl font-medium text-indigo-900 pt-3"
+                        >
+                            Novotel Phuket Kata Avista Resort and Spa
+                        </p>
+                        <p class="text-base font-extrabold p-2.5 rounded-full bg-slate-50 absolute top-12 left-12 text-orange-300">8.5</p>
+                        <img class="absolute bottom-0 left-11 zoom bg-gray-300"
+                            src="/src/images/line-tickets.png"
+                            alt="Отрывная часть"
+                        />
+                    </div>
+                    <div class="p-8 bg-white rounded-40">
+                        <div class="flex gap-4 pb-3">
+                            <p class="font-medium text-lg text-gray-400">01.08.2023</p>
+                            <p class="font-medium text-lg text-gray-400">14.08.2023</p>
+                        </div>
+                        <p class="montserrat text-4xl font-medium text-gray-900 pb-4">15 000 руб.</p>
+                        <div class="flex gap-4">
+                            <button class="btn-primary">Забронировать</button>
+                            <button class="btn-secondary">В избранное</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="overflow-hidden">
+                    <div class="p-8 relative bg-white rounded-40">
+                        <img
+                            class="rounded-40"
+                            src="/src/images/bali3.jpeg"
+                            alt=""
+                        />
+                        <div class="pt-4 relative">
+                            <span
+                                class="montserrat text-lg font-medium text-gray-400"
+                            >
+                                Индонезия
+                            </span>
+                            <span
+                                class="text-gray-400 pt-6 px-1"
+                                aria-hidden="true"
+                                >&middot;</span
+                            >
+                            <span
+                                class="montserrat text-lg font-medium text-gray-400"
+                            >
+                                Остров Бали
+                            </span>
+                        </div>
+                        <p
+                            class="montserrat text-3xl font-medium text-indigo-900 pt-3"
+                        >
+                            Novotel Phuket Kata Avista Resort and Spa
+                        </p>
+                        <p class="text-base font-extrabold p-2.5 rounded-full bg-slate-50 absolute top-12 left-12 text-orange-300">8.5</p>
+                        <img class="absolute bottom-0 left-11 zoom bg-gray-300"
+                            src="/src/images/line-tickets.png"
+                            alt="Отрывная часть"
+                        />
+                    </div>
+                    <div class="p-8 bg-white rounded-40">
+                        <div class="flex gap-4 pb-3">
+                            <p class="font-medium text-lg text-gray-400">01.08.2023</p>
+                            <p class="font-medium text-lg text-gray-400">14.08.2023</p>
+                        </div>
+                        <p class="montserrat text-4xl font-medium text-gray-900 pb-4">15 000 руб.</p>
+                        <div class="flex gap-4">
+                            <button class="btn-primary">Забронировать</button>
+                            <button class="btn-secondary">В избранное</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
