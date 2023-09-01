@@ -10,7 +10,6 @@ async function listTours() {
 
     tours.forEach(tour => {
         const duration = differenceInDays(new Date(tour.endTime), new Date(tour.startTime))
-
         // excludeValue()
 
         document.getElementById('container-tours').innerHTML +=`
@@ -95,8 +94,10 @@ async function listTours() {
 
 }
 
-// async function excludeValue() {
-//     if(tour.city === null) {
+// function excludeValue() {
+//     const cityArray = tour.city //приравнять к значению из массива
+
+//     if (cityArray === null || cityArray === undefined ) {
 //         cityExclusion.style.display = "none"
 //     }
 // }
