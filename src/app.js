@@ -1,11 +1,18 @@
+import { format, differenceInDays } from 'date-fns'
+import { ru } from 'date-fns/locale';
+
+
 async function listTours() {
 
     const respanse = await fetch('https://www.bit-by-bit.ru/api/student-projects/tours')
     const tours = await respanse.json()
 
-    console.log(tours)
 
     tours.forEach(tour => {
+        const duration = differenceInDays(new Date(tour.endTime), new Date(tour.startTime))
+
+        // excludeValue()
+
         document.getElementById('container-tours').innerHTML +=`
         <div class="overflow-hidden flex flex-col justify-between">
             <div class="p-8 relative bg-white rounded-40 h-full">
@@ -25,7 +32,7 @@ async function listTours() {
                         aria-hidden="true"
                         >&middot;</span
                     >
-                    <span
+                    <span id="cityExclusion"
                         class="montserrat text-base md:text-base lg:text-lg font-medium text-gray-400"
                     >
                         ${tour.city}
@@ -50,16 +57,26 @@ async function listTours() {
                 </div>
             </div>
             <div class="p-8 bg-white rounded-40">
-                <div class="flex gap-4 pb-3">
-                    <p
-                        class="font-medium text-sm md:text-base lg:text-lg text-gray-400"
-                    >
-                        ${tour.startTime}
-                    </p>
-                    <p
-                        class="font-medium text-sm md:text-base lg:text-lg text-gray-400"
-                    >
-                        ${tour.endTime}
+                <div class="flex flex-col gap-1 pb-3">
+                    <div class="flex gap-2">
+                        <p
+                            class="font-medium text-sm md:text-base lg:text-lg text-gray-400"
+                        >
+                            ${format(new Date(tour.startTime), 'dd.MM.yyyy', {locale: ru})}
+                        </p>
+                        <p
+                            class="font-medium text-sm md:text-base lg:text-lg text-gray-400"
+                        >
+                            -
+                        </p>
+                        <p
+                            class="font-medium text-sm md:text-base lg:text-lg text-gray-400"
+                        >
+                            ${format(new Date(tour.endTime), 'dd.MM.yyyy', {locale: ru})}
+                        </p>
+                    </div>
+                    <p class="font-normal text-xs md:text-sm lg:text-base text-gray-400"> 
+                            Кол-во дней: ${duration}
                     </p>
                 </div>
                 <p
@@ -77,5 +94,11 @@ async function listTours() {
     });
 
 }
+
+// async function excludeValue() {
+//     if(tour.city === null) {
+//         cityExclusion.style.display = "none"
+//     }
+// }
 
 listTours()
