@@ -8,11 +8,14 @@ async function renderTours() {
     tours.forEach(tour => {
         const duration = differenceInDays(new Date(tour.endTime), new Date(tour.startTime))
 
-        const filteredCity = tours.filter(tour => tour.city === null)
+        const filteredCity = tours.filter(tour => tour.city === null | tour.city === undefined)
         if (tour.city === null) {
-            // document.getElementById('cityExclusion') = "none"
+            document.getElementById('cityExclusion') = "none"
             // cityExclusion.style.display = "none"
         }
+
+        tour.city
+        console.log(tour.city)
 
         document.getElementById('container-tours').innerHTML +=`
         <div class="overflow-hidden flex flex-col justify-between">
