@@ -8,6 +8,12 @@ async function renderTours() {
     tours.forEach(tour => {
         const duration = differenceInDays(new Date(tour.endTime), new Date(tour.startTime))
 
+        const filteredCity = tours.filter(tour => tour.city === null)
+        if (tour.city === null) {
+            // document.getElementById('cityExclusion') = "none"
+            // cityExclusion.style.display = "none"
+        }
+
         document.getElementById('container-tours').innerHTML +=`
         <div class="overflow-hidden flex flex-col justify-between">
             <div class="p-8 relative bg-white rounded-40 h-full">
@@ -28,7 +34,7 @@ async function renderTours() {
                         >&middot;</span
                     >
                     <span id="cityExclusion"
-                        class="montserrat text-base md:text-base lg:text-lg font-medium text-gray-400"
+                        class="montserrat text-base md:text-base lg:text-lg font-medium text-gray-400 inline-block"
                     >
                         ${tour.city}
                     </span>
@@ -46,7 +52,7 @@ async function renderTours() {
                 <div class="absolute bottom-0 overflow-hidden pr-8">
                     <img
                         class="bg-gray-300 object-cover"
-                        src="https://github.com/sheleshen/Project_10_tours/blob/main/src/images/line-tickets.png"
+                        src="src\images\line-tickets.png"
                         alt="Отрывная линия"
                     />
                 </div>
@@ -90,23 +96,14 @@ async function renderTours() {
 }
 
 // async function excludeValue(tours, city) {
-//     if (city === null) {
+//     if (city) {
 //         const filteredCity = tours.filter((tour) => {
-//             return tour.city === null
 //             cityExclusion.style.display = "none"
+//             // return tour.city === null     
 //         })
+//     } else {
+//         renderTours()
 //     }
 // }
-
-async function excludeValue(tours, city) {
-    if (city) {
-        const filteredCity = tours.filter((tour) => {
-            cityExclusion.style.display = "none"
-            return tour.city === null        
-        })
-    } else {
-        renderTours()
-    }
-}
 
 renderTours()
