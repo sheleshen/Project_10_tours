@@ -1,16 +1,12 @@
 import { format, differenceInDays } from 'date-fns'
 import { ru } from 'date-fns/locale';
 
-
-async function listTours() {
-
+async function renderTours() {
     const respanse = await fetch('https://www.bit-by-bit.ru/api/student-projects/tours')
     const tours = await respanse.json()
 
-
     tours.forEach(tour => {
         const duration = differenceInDays(new Date(tour.endTime), new Date(tour.startTime))
-        // excludeValue()
 
         document.getElementById('container-tours').innerHTML +=`
         <div class="overflow-hidden flex flex-col justify-between">
@@ -50,7 +46,7 @@ async function listTours() {
                 <div class="absolute bottom-0 overflow-hidden pr-8">
                     <img
                         class="bg-gray-300 object-cover"
-                        src="src\images\line-tickets.png"
+                        src="https://github.com/sheleshen/Project_10_tours/blob/main/src/images/line-tickets.png"
                         alt="Отрывная линия"
                     />
                 </div>
@@ -91,15 +87,26 @@ async function listTours() {
         </div>
         `
     });
-
 }
 
-// function excludeValue() {
-//     const cityArray = tour.city //приравнять к значению из массива
-
-//     if (cityArray === null || cityArray === undefined ) {
-//         cityExclusion.style.display = "none"
+// async function excludeValue(tours, city) {
+//     if (city === null) {
+//         const filteredCity = tours.filter((tour) => {
+//             return tour.city === null
+//             cityExclusion.style.display = "none"
+//         })
 //     }
 // }
 
-listTours()
+async function excludeValue(tours, city) {
+    if (city) {
+        const filteredCity = tours.filter((tour) => {
+            cityExclusion.style.display = "none"
+            return tour.city === null        
+        })
+    } else {
+        renderTours()
+    }
+}
+
+renderTours()
