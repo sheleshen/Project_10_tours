@@ -1,23 +1,27 @@
 import { format, differenceInDays } from 'date-fns'
 import { ru } from 'date-fns/locale';
+import { Container } from 'postcss';
 
-async function renderTours() {
+let tours = []
+
+async function getData(){
     const respanse = await fetch('https://www.bit-by-bit.ru/api/student-projects/tours')
-    const tours = await respanse.json()
+    const data = await respanse.json()
 
-    tours.forEach(tour => {
+    tours = data
+    renderTours()
+    return data
+}
+
+function renderTours() {
+
+    const container =  document.getElementById('container-tours')
+    container.innerHTML =''
+
+    tours.forEach((tour) => {
         const duration = differenceInDays(new Date(tour.endTime), new Date(tour.startTime))
 
-        const filteredCity = tours.filter(tour => tour.city === null | tour.city === undefined)
-        if (tour.city === null) {
-            document.getElementById('cityExclusion') = "none"
-            // cityExclusion.style.display = "none"
-        }
-
-        tour.city
-        console.log(tour.city)
-
-        document.getElementById('container-tours').innerHTML +=`
+        container.innerHTML +=`
         <div class="overflow-hidden flex flex-col justify-between">
             <div class="p-8 relative bg-white rounded-40 h-full">
                     <img
@@ -55,7 +59,7 @@ async function renderTours() {
                 <div class="absolute bottom-0 overflow-hidden pr-8">
                     <img
                         class="bg-gray-300 object-cover"
-                        src="./src/images/line-tickets.png"
+                        src="/src/images/line-tickets.png"
                         alt="Отрывная линия"
                     />
                 </div>
@@ -98,6 +102,8 @@ async function renderTours() {
     });
 }
 
+getData()
+
 // async function excludeValue(tours, city) {
 //     if (city) {
 //         const filteredCity = tours.filter((tour) => {
@@ -109,4 +115,8 @@ async function renderTours() {
 //     }
 // }
 
-renderTours()
+// const filteredCity = tours.filter(tour => tour.city === null | tour.city === undefined)
+// if (tour.city === null) {
+//     document.getElementById('cityExclusion') = "none"
+//     cityExclusion.style.display = "none"
+// }
