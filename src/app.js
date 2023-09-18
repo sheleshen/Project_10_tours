@@ -55,7 +55,7 @@ async function renderTours() {
                 <div class="absolute bottom-0 overflow-hidden pr-8">
                     <img
                         class="bg-gray-300 object-cover"
-                        src="src\images\line-tickets.png"
+                        src="./src/images/line-tickets.png"
                         alt="Отрывная линия"
                     />
                 </div>

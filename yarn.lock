@@ -474,7 +474,7 @@
     "@parcel/utils" "2.9.3"
     posthtml "^0.16.4"
 
-"@parcel/plugin@2.9.3":
+"@parcel/plugin@2.9.3", "@parcel/plugin@^2.0.0-beta.1":
   version "2.9.3"
   resolved "https://registry.yarnpkg.com/@parcel/plugin/-/plugin-2.9.3.tgz#90e9a9482fa27735494372f5643db01abcf3fdb6"
   integrity sha512-qN85Gqr2GMuxX1dT1mnuO9hOcvlEv1lrYrCxn7CJN2nUhbwcfG+LEvcrCzCOJ6XtIHm+ZBV9h9p7FfoPLvpw+g==
@@ -1680,6 +1680,13 @@ ordered-binary@^1.4.0:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/ordered-binary/-/ordered-binary-1.4.1.tgz#205cb6efd6c27fa0ef4eced994a023e081cdc911"
   integrity sha512-9LtiGlPy982CsgxZvJGNNp2/NnrgEr6EAyN3iIEP3/8vd3YLgAZQHbQ75ZrkfBRGrNg37Dk3U6tuVb+B4Xfslg==
+
+parcel-reporter-static-files-copy@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/parcel-reporter-static-files-copy/-/parcel-reporter-static-files-copy-1.5.2.tgz#aed0370717ea5d5185d6b09aea9cf9e6f479366c"
+  integrity sha512-NyIP8dOBj4WiZYAfKKTFWrMh8/kjrP72673G3hs7TOoT/30QWwUQpRA7oW4IxbjY2ICOo2sV06Z1lzPKCDbrGA==
+  dependencies:
+    "@parcel/plugin" "^2.0.0-beta.1"
 
 parcel@^2.9.3:
   version "2.9.3"
