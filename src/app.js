@@ -1,27 +1,31 @@
-import { format, differenceInDays } from 'date-fns'
+import { format, differenceInDays } from 'date-fns';
 import { ru } from 'date-fns/locale';
 import { Container } from 'postcss';
 
-let tours = []
+let tours = [];
 
-async function getData(){
-    const respanse = await fetch('https://www.bit-by-bit.ru/api/student-projects/tours')
-    const data = await respanse.json()
+async function getData() {
+    const respanse = await fetch(
+        'https://www.bit-by-bit.ru/api/student-projects/tours'
+    );
+    const data = await respanse.json();
 
-    tours = data
-    renderTours()
-    return data
+    tours = data;
+    renderTours();
+    return data;
 }
 
 function renderTours() {
-
-    const container =  document.getElementById('container-tours')
-    container.innerHTML =''
+    const container = document.getElementById('container-tours');
+    container.innerHTML = '';
 
     tours.forEach((tour) => {
-        const duration = differenceInDays(new Date(tour.endTime), new Date(tour.startTime))
+        const duration = differenceInDays(
+            new Date(tour.endTime),
+            new Date(tour.startTime)
+        );
 
-        container.innerHTML +=`
+        container.innerHTML += `
         <div class="overflow-hidden flex flex-col justify-between">
             <div class="p-8 relative bg-white rounded-40 h-full">
                     <img
@@ -70,7 +74,9 @@ function renderTours() {
                         <p
                             class="font-medium text-sm md:text-base lg:text-lg text-gray-400"
                         >
-                            ${format(new Date(tour.startTime), 'dd.MM.yyyy', {locale: ru})}
+                            ${format(new Date(tour.startTime), 'dd.MM.yyyy', {
+                                locale: ru
+                            })}
                         </p>
                         <p
                             class="font-medium text-sm md:text-base lg:text-lg text-gray-400"
@@ -80,7 +86,9 @@ function renderTours() {
                         <p
                             class="font-medium text-sm md:text-base lg:text-lg text-gray-400"
                         >
-                            ${format(new Date(tour.endTime), 'dd.MM.yyyy', {locale: ru})}
+                            ${format(new Date(tour.endTime), 'dd.MM.yyyy', {
+                                locale: ru
+                            })}
                         </p>
                     </div>
                     <p class="font-normal text-xs md:text-sm lg:text-base text-gray-400"> 
@@ -98,17 +106,17 @@ function renderTours() {
                 </div>
             </div>
         </div>
-        `
+        `;
     });
 }
 
-getData()
+getData();
 
 // async function excludeValue(tours, city) {
 //     if (city) {
 //         const filteredCity = tours.filter((tour) => {
 //             cityExclusion.style.display = "none"
-//             // return tour.city === null     
+//             // return tour.city === null
 //         })
 //     } else {
 //         renderTours()
