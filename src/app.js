@@ -101,7 +101,7 @@ function renderTours() {
                     ${tour.price} руб.
                 </p>
                 <div class="flex gap-3 flex-wrap">
-                    <button id="btn-booking" class="btn-primary">Забронировать</button>
+                    <button id="btn-booking-${tour.id}" class="btn-primary">Забронировать</button>
                     <button id="btn-favorites" class="btn-secondary">В избранное</button>
                 </div>
             </div>
@@ -110,21 +110,31 @@ function renderTours() {
     });
 }
 
+// const modalWindowBooking = document.getElementById('modal-window-booking')
+
+// const btnBooking = document.getElementById('btn-booking')
+
+// const iconCloseModalWindow = document.getElementById('close-window-booking') // Иконка "Закрыть"
+// iconCloseModalWindow.addEventListener('click', closeModalWindow)
+
+// const btnSendData = document.getElementById('btn-send-data') // Кнопка "Отправить"
+
+// // Получить данные
+// function getInfoTour(tours) {
+//     document.getElementById('tourCountry').value = tour.country
+//     document.getElementById('tourCity').value = tour.city
+//     document.getElementById('tourHotelName').value = tour.hotelName
+//     document.getElementById('tourStartTime').value = tour.startTime
+//     document.getElementById('tourEndTime').value = tour.endTime
+//     document.getElementById('tourImage').value = tour.image
+// }
+
+// // Открыть форму
+// function openModalWindowEdit(id) {
+//     modalWindowEdit.style.display = "flex"
+
+// }
+
 getData();
 
-// async function excludeValue(tours, city) {
-//     if (city) {
-//         const filteredCity = tours.filter((tour) => {
-//             cityExclusion.style.display = "none"
-//             // return tour.city === null
-//         })
-//     } else {
-//         renderTours()
-//     }
-// }
 
-// const filteredCity = tours.filter(tour => tour.city === null | tour.city === undefined)
-// if (tour.city === null) {
-//     document.getElementById('cityExclusion') = "none"
-//     cityExclusion.style.display = "none"
-// }
