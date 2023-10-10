@@ -2,18 +2,14 @@ import { format, differenceInDays } from 'date-fns'
 import { ru } from 'date-fns/locale';
 import { Container } from 'postcss';
 
-let tours = []
-
-async function getData(){
+async function getData() {
     const respanse = await fetch('https://www.bit-by-bit.ru/api/student-projects/tours')
     const data = await respanse.json()
 
-    tours = data
-    renderTours()
     return data
 }
 
-function renderTours() {
+function renderTours(tours) {
 
     const container =  document.getElementById('container-tours')
     container.innerHTML =''
@@ -35,16 +31,20 @@ function renderTours() {
                     >
                         ${tour.country}
                     </span>
-                    <span
+                    ${ 
+                        tour.city !== null ? `
+                        <span
                         class="text-gray-400 pt-6 px-1"
                         aria-hidden="true"
                         >&middot;</span
-                    >
-                    <span id="cityExclusion"
-                        class="montserrat text-base md:text-base lg:text-lg font-medium text-gray-400 inline-block"
-                    >
-                        ${tour.city}
-                    </span>
+                        >
+                        <span id="cityExclusion"
+                            class="montserrat text-base md:text-base lg:text-lg font-medium text-gray-400 inline-block"
+                        >
+                            ${tour.city}
+                        </span>
+                        ` : ""
+                    }
                 </div>
                 <p
                     class="montserrat text-xl lg:text-2xl xl:text-3xl font-medium text-indigo-900 pt-3"
@@ -59,7 +59,7 @@ function renderTours() {
                 <div class="absolute bottom-0 overflow-hidden pr-8">
                     <img
                         class="bg-gray-300 object-cover"
-                        src="/src/images/line-tickets.png"
+                        src="/images/line-tickets.png"
                         alt="Отрывная линия"
                     />
                 </div>
@@ -102,21 +102,15 @@ function renderTours() {
     });
 }
 
-getData()
+async function init() {
+    let tours = await getData()
 
-// async function excludeValue(tours, city) {
-//     if (city) {
-//         const filteredCity = tours.filter((tour) => {
-//             cityExclusion.style.display = "none"
-//             // return tour.city === null     
-//         })
-//     } else {
-//         renderTours()
-//     }
-// }
+    renderTours(tours)
+}
 
-// const filteredCity = tours.filter(tour => tour.city === null | tour.city === undefined)
-// if (tour.city === null) {
-//     document.getElementById('cityExclusion') = "none"
-//     cityExclusion.style.display = "none"
-// }
+init()
+
+// Для фильтров 
+// const filtredToursCity = tours.filter(tour => {
+//     return tour.city === "Пафос"
+// })
