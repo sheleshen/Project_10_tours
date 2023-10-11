@@ -2,13 +2,16 @@ import { format, differenceInDays } from 'date-fns';
 import { ru } from 'date-fns/locale';
 import { Container } from 'postcss';
 
-
+let currentId
+let allTours
 
 async function getData() {
     const respanse = await fetch(
         'https://www.bit-by-bit.ru/api/student-projects/tours'
     );
     const data = await respanse.json();
+
+    allTours = data;
     return data;
 }
 
@@ -125,9 +128,10 @@ async function init() {
 
 // открыть мод.окно
 function openModalWindowBooking(id) {
+    currentId = id
     document.getElementById('modal-window-booking').style.display = "flex"
 
-    const tour = tours.find((n) => {
+    const tour = allTours.find((n) => {
         return n.id === id 
     })
 
@@ -200,7 +204,7 @@ function renderModalTours(tours) {
 }
 
 // Данные тура
-function getValue(tours) {
+function getValue(tour) {
 
     const startTime = format(new Date(tour.startTime), 'dd.MM.yyyy', {
         locale: ru
@@ -213,8 +217,8 @@ function getValue(tours) {
     document.getElementById('tourCity').value = tour.city
     document.getElementById('tourHotelName').value = tour.hotelName
     document.getElementById('tourImage').value = tour.image
-    document.getElementById('tourStartTime').value = tour.startTime
-    document.getElementById('tourEndTime').value = tour.endTime
+    document.getElementById('tourStartTime').value = startTime
+    document.getElementById('tourEndTime').value = endTime
 }
 
 // Очистить форму
