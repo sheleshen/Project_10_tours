@@ -133,6 +133,8 @@ function openModalWindowBooking(id) {
 
     // Получить данные тура
     getValue(tour)
+    // Отрисовать тур
+    renderModalTours(tours)
 }
 
 function renderModalTours(tours) {
@@ -194,11 +196,11 @@ function renderModalTours(tours) {
             </div>
         </div>
         `;
-    });  
+    });
 }
 
 // Данные тура
-function getValue(tour) {
+function getValue(tours) {
 
     const startTime = format(new Date(tour.startTime), 'dd.MM.yyyy', {
         locale: ru
@@ -243,7 +245,6 @@ function closeModalWindow() {
 // const btnSendData = document.getElementById('btn-send-data') // Кнопка "Отправить"
 
 init()
-renderModalTours(tours)
 
 
 
