@@ -137,7 +137,7 @@ function openModalWindowBooking(id) {
 
     // Получить данные тура
     getValue(tour)
-    // Отрисовать тур
+    // Отрисовать тур ?
     // renderModalTours(tours)
 }
 
