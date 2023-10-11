@@ -2,6 +2,8 @@ import { format, differenceInDays } from 'date-fns';
 import { ru } from 'date-fns/locale';
 import { Container } from 'postcss';
 
+
+
 async function getData() {
     const respanse = await fetch(
         'https://www.bit-by-bit.ru/api/student-projects/tours'
@@ -134,8 +136,8 @@ function openModalWindowBooking(id) {
 }
 
 function renderModalTours(tours) {
-    const container = document.getElementById('tour-details');
-    container.innerHTML = '';
+    const containerModal = document.getElementById('tour-details');
+    containerModal.innerHTML = '';
 
     tours.forEach((tour) => {
         const duration = differenceInDays(
@@ -143,7 +145,7 @@ function renderModalTours(tours) {
             new Date(tour.startTime)
         );
 
-        container.innerHTML += `
+        containerModal.innerHTML += `
         <img id="tourImage"
             class="rounded-40" class="rounded-40 object-cover h-52 w-full"
             src="${tour.image}"
@@ -195,11 +197,6 @@ function renderModalTours(tours) {
     });  
 }
 
-async function initModal() {
-    let alltours = await getData()
-    renderModalTours(tours)
-}
-
 // Данные тура
 function getValue(tour) {
 
@@ -246,7 +243,7 @@ function closeModalWindow() {
 // const btnSendData = document.getElementById('btn-send-data') // Кнопка "Отправить"
 
 init()
-initModal()
+renderModalTours(tours)
 
 
 
