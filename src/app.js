@@ -63,13 +63,6 @@ function renderTours(tours) {
                 >
                     ${tour.rating}
                 </p>
-                <div class="absolute bottom-0 overflow-hidden pr-8">
-                    <img
-                        class="bg-gray-300 object-cover"
-                        src="/images/line-tickets.png"
-                        alt="Отрывная линия"
-                    />
-                </div>
             </div>
             <div class="p-8 bg-white rounded-40">
                 <div class="flex flex-col gap-1 pb-3">
@@ -123,6 +116,16 @@ function renderTours(tours) {
 async function init() {
     let tours = await getData()
     renderTours(tours)
+    loader()
+}
+
+function loader() {
+    const loader = document.getElementById('loader')
+
+    loader.classList.add('hidden')
+    setTimeout(() => {
+        loader.remove()
+    }, 1000)
 }
 
 // открыть мод.окно
@@ -228,6 +231,9 @@ function clearForm() {
 // Закрыть форму
 const iconCloseModalWindow = document.getElementById('close-window-booking') //только иконка "Закрыть"
 iconCloseModalWindow.addEventListener('click', closeModalWindow)
+
+const btnCloseModalWindow = document.getElementById('btn-close-window') //кнопка "Закрыть"
+btnCloseModalWindow.addEventListener('click', closeModalWindow)
 
 function closeModalWindow() {  
     document.getElementById('modal-window-booking').style.display = 'none'
