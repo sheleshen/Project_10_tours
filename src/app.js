@@ -218,12 +218,47 @@ function closeModalWindow() {
     clearForm()
 }
 
+// Смена стилей для input
+function shoowError(id) {
+    document.getElementById(id).classList.add('input-error')
+}
+
+function hideError(id) {
+    document.getElementById(id).classList.remove('input-error')
+}
+
+function checkField() {
+    if (customerName === '') {
+        shoowError("customerName")
+        return
+    } else {
+        hideError("customerName")
+    }
+
+    if (phone === '') {
+        shoowError("phone")
+        return
+    } else {
+        hideError("phone")
+    }
+
+    if (email === '') {
+        shoowError("email")
+        return
+    } else {
+        hideError("email")
+    }
+}
+
 
 const btnSendData = document.getElementById('btn-send-data') // Кнопка "Отправить"
 btnSendData.addEventListener('click', requestBooking)
 
 // Тело запроса
 async function requestBooking() {
+
+    checkField()
+
     const params = {
     customerName: document.getElementById('customerName').value,
     phone: document.getElementById('phone').value,
@@ -231,15 +266,18 @@ async function requestBooking() {
     description: document.getElementById('description').value  
     }
 
-    const url = "https://www.bit-by-bit.ru/api/student-projects/tours/{tour.id}"
+    const url = "https://www.bit-by-bit.ru/api/student-projects/tours/[id]"
 
-    let response = await fetch(url, {
+    const response = await fetch(url, {
     method: "POST",
     body: JSON.stringify(params)
     })
-    let jsonData = await response.json()
-}
+    const data = await response.json()
 
+    console.log(data)
+
+    closeModalWindow()
+}
 
 
 init()
