@@ -137,9 +137,6 @@ function openModalWindowBooking(id) {
         return n.id === id 
     })
 
-    // Получить данные
-    // getValue(tour)
-
     // Отрисовать тур
     renderModalTours(tour)
 }
@@ -201,25 +198,6 @@ function renderModalTours(tour) {
         `;
     };
 
-
-// Данные тура
-// function getValue(tour) {
-
-//     const startTime = format(new Date(tour.startTime), 'dd.MM.yyyy', {
-//         locale: ru
-//     })
-//     const endTime = format(new Date(tour.endTime), 'dd.MM.yyyy', {
-//         locale: ru
-//     })
-
-//     document.getElementById('tourCountry').value = tour.country
-//     document.getElementById('tourCity').value = tour.city
-//     document.getElementById('tourHotelName').value = tour.hotelName
-//     document.getElementById('tourImage').value = tour.image
-//     document.getElementById('tourStartTime').value = startTime
-//     document.getElementById('tourEndTime').value = endTime
-// }
-
 // Очистить форму
 function clearForm() {
     document.getElementById('customerName').value = ""
@@ -240,15 +218,27 @@ function closeModalWindow() {
     clearForm()
 }
 
-// Тело запроса
-// const params = {
-//     customerName: document.getElementById('customerName').value,
-//     phone: document.getElementById('phone').value,
-//     email: document.getElementById('email').value,
-//     description: document.getElementById('description').value    
-// }
 
-// const btnSendData = document.getElementById('btn-send-data') // Кнопка "Отправить"
+const btnSendData = document.getElementById('btn-send-data') // Кнопка "Отправить"
+btnSendData.addEventListener('click', requestBooking)
+
+// Тело запроса
+function requestBooking() {
+    const params = {
+    customerName: document.getElementById('customerName').value,
+    phone: document.getElementById('phone').value,
+    email: document.getElementById('email').value,
+    description: document.getElementById('description').value  
+    }
+
+}
+
+// const url = ""
+// let response = await fetch(url, {
+// method: "POST",
+// body: JSON.stringify(params)
+// })
+// let data = await response.json()
 
 init()
 
