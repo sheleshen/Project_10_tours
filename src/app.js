@@ -223,7 +223,7 @@ const btnSendData = document.getElementById('btn-send-data') // Кнопка "О
 btnSendData.addEventListener('click', requestBooking)
 
 // Тело запроса
-function requestBooking() {
+async function requestBooking() {
     const params = {
     customerName: document.getElementById('customerName').value,
     phone: document.getElementById('phone').value,
@@ -231,17 +231,18 @@ function requestBooking() {
     description: document.getElementById('description').value  
     }
 
+    const url = "https://www.bit-by-bit.ru/api/student-projects/tours/{tour.id}"
+
+    let response = await fetch(url, {
+    method: "POST",
+    body: JSON.stringify(params)
+    })
+    let jsonData = await response.json()
 }
 
-// const url = ""
-// let response = await fetch(url, {
-// method: "POST",
-// body: JSON.stringify(params)
-// })
-// let data = await response.json()
+
 
 init()
-
 
 
 // Для фильтров 
