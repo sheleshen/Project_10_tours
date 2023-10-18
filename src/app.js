@@ -266,7 +266,7 @@ async function requestBooking() {
     description: document.getElementById('description').value  
     }
 
-    const url = "https://www.bit-by-bit.ru/api/student-projects/tours/[id]"
+    const url = `https://www.bit-by-bit.ru/api/student-projects/tours/${currentId}`
 
     const response = await fetch(url, {
     method: "POST",
@@ -275,8 +275,10 @@ async function requestBooking() {
     const data = await response.json()
 
     console.log(data)
+    console.log(response)
 
-    closeModalWindow()
+    closeModalWindow()  
+    // нужно обработать входящую ошибку = null и вывести новое мод.окно, "спасибо за бронирование" try catch и написать проверку для полей "заполните все поля"
 }
 
 
