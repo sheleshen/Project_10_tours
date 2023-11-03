@@ -1,8 +1,8 @@
 import { format, differenceInDays } from 'date-fns';
 import { ru } from 'date-fns/locale';
 
-let currentId
-let allTours
+let currentId;
+let allTours;
 
 async function getData() {
     const response = await fetch(
@@ -38,8 +38,9 @@ function renderTours(tours) {
                     >
                         ${tour.country}
                     </span>
-                    ${ 
-                        tour.city !== null ? `
+                    ${
+                        tour.city !== null
+                            ? `
                         <span
                         class="text-gray-400 pt-6 px-1"
                         aria-hidden="true"
@@ -50,7 +51,8 @@ function renderTours(tours) {
                         >
                             ${tour.city}
                         </span>
-                        ` : ""
+                        `
+                            : ''
                     }
                 </div>
                 <p
@@ -97,7 +99,9 @@ function renderTours(tours) {
                     ${tour.price} руб.
                 </p>
                 <div class="flex gap-3 flex-wrap">
-                    <button id="btn-booking-${tour.id}" class="btn-primary">Забронировать</button>
+                    <button id="btn-booking-${
+                        tour.id
+                    }" class="btn-primary">Забронировать</button>
                     <button id="btn-favorites" class="btn-secondary">В избранное</button>
                 </div>
             </div>
@@ -106,46 +110,46 @@ function renderTours(tours) {
     });
 
     tours.forEach((tour) => {
-        const btnBooking  = document.getElementById(`btn-booking-${tour.id}`)
+        const btnBooking = document.getElementById(`btn-booking-${tour.id}`);
         btnBooking.addEventListener('click', () => {
-            openModalWindowBooking(tour.id)
+            openModalWindowBooking(tour.id);
         });
-    });   
+    });
 }
 
 async function init() {
-    let tours = await getData()
-    renderTours(tours)
-    loader()
+    let tours = await getData();
+    renderTours(tours);
+    loader();
 }
 
 function loader() {
-    const loader = document.getElementById('loader')
+    const loader = document.getElementById('loader');
 
-    loader.classList.add('hidden')
+    loader.classList.add('hidden');
     setTimeout(() => {
-        loader.remove()
-    }, 1000)
+        loader.remove();
+    }, 1000);
 }
 
 // открыть мод.окно
 function openModalWindowBooking(id) {
-    currentId = id
-    document.getElementById('modal-window-booking').style.display = "flex"
+    currentId = id;
+    document.getElementById('modal-window-booking').style.display = 'flex';
 
     const tour = allTours.find((n) => {
-        return n.id === id 
-    })
+        return n.id === id;
+    });
 
     // Отрисовать тур
-    renderModalTours(tour)
+    renderModalTours(tour);
 }
 
 function renderModalTours(tour) {
     const containerModal = document.getElementById('tour-details');
     containerModal.innerHTML = '';
 
-        containerModal.innerHTML += `
+    containerModal.innerHTML += `
         <div>
             <img id="tourImage"
                 class="rounded-40 object-cover h-48 w-48"
@@ -158,15 +162,17 @@ function renderModalTours(tour) {
                 <span id="tourCountry" class="montserrat text-base md:text-base lg:text-lg font-medium text-gray-900" >
                     ${tour.country}
                 </span>
-                ${ 
-                    tour.city !== null ? `
+                ${
+                    tour.city !== null
+                        ? `
                     <span class="text-gray-900 pt-6 px-1" aria-hidden="true" >
                     &middot;
                     </span >
                     <span id="tourCity" class="montserrat text-base md:text-base lg:text-lg font-medium text-gray-900 inline-block">
                         ${tour.city}
                     </span>
-                    ` : ""
+                    `
+                        : ''
                 }
             </div>
             <p id="tourHotelName" class="montserrat text-lg lg:text-xl font-semibold text-indigo-900">
@@ -196,96 +202,96 @@ function renderModalTours(tour) {
             </div>
         </div>
         `;
-    };
+}
 
 // Очистить форму
 function clearForm() {
-    document.getElementById('customerName').value = ""
-    document.getElementById('phone').value = ""
-    document.getElementById('email').value = ""
-    document.getElementById('description').value = ""
+    document.getElementById('customerName').value = '';
+    document.getElementById('phone').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('description').value = '';
 }
 
 // Закрыть форму
-const iconCloseModalWindow = document.getElementById('close-window-booking') //только иконка "Закрыть"
-iconCloseModalWindow.addEventListener('click', closeModalWindow)
+const iconCloseModalWindow = document.getElementById('close-window-booking'); //только иконка "Закрыть"
+iconCloseModalWindow.addEventListener('click', closeModalWindow);
 
-const btnCloseModalWindow = document.getElementById('btn-close-window') //кнопка "Закрыть"
-btnCloseModalWindow.addEventListener('click', closeModalWindow)
+const btnCloseModalWindow = document.getElementById('btn-close-window'); //кнопка "Закрыть"
+btnCloseModalWindow.addEventListener('click', closeModalWindow);
 
-function closeModalWindow() {  
-    document.getElementById('modal-window-booking').style.display = 'none'
-    clearForm()
+function closeModalWindow() {
+    document.getElementById('modal-window-booking').style.display = 'none';
+    clearForm();
 }
 
 // Смена стилей для input
-function shoowError(id) {
-    document.getElementById(id).classList.add('input-error')
-}
+// function shoowError(id) {
+//     document.getElementById(id).classList.add('input-error')
+// }
 
-function hideError(id) {
-    document.getElementById(id).classList.remove('input-error')
-}
+// function hideError(id) {
+//     document.getElementById(id).classList.remove('input-error')
+// }
 
-function checkField() {
-    if (customerName === '') {
-        shoowError("customerName")
-        return
-    } else {
-        hideError("customerName")
-    }
+// function checkField() {
+//     if (customerName === '') {
+//         shoowError("customerName")
+//         return
+//     } else {
+//         hideError("customerName")
+//     }
 
-    if (phone === '') {
-        shoowError("phone")
-        return
-    } else {
-        hideError("phone")
-    }
+//     if (phone === '') {
+//         shoowError("phone")
+//         return
+//     } else {
+//         hideError("phone")
+//     }
 
-    if (email === '') {
-        shoowError("email")
-        return
-    } else {
-        hideError("email")
-    }
-}
+//     if (email === '') {
+//         shoowError("email")
+//         return
+//     } else {
+//         hideError("email")
+//     }
+// }
 
-
-const btnSendData = document.getElementById('btn-send-data') // Кнопка "Отправить"
-btnSendData.addEventListener('click', requestBooking)
+const btnSendData = document.getElementById('btn-send-data'); // Кнопка "Отправить"
+btnSendData.addEventListener('click', requestBooking);
 
 // Тело запроса
 async function requestBooking() {
 
-    checkField()
-
     const params = {
-    customerName: document.getElementById('customerName').value,
-    phone: document.getElementById('phone').value,
-    email: document.getElementById('email').value,
-    description: document.getElementById('description').value  
+        customerName: document.getElementById('customerName').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
+        description: document.getElementById('description').value
+    };
+
+    if (params.customerName && params.phone && params.email) {
+        const url = `https://www.bit-by-bit.ru/api/student-projects/tours/${currentId}`;
+
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(params)
+            });
+            const jsonData = await response.json();
+
+            closeModalWindow();
+            openModalWindowBookingSuccessful();
+        } catch {
+            console.log('Ошибка!');
+        }
+    } else {
+        document.getElementById('error-message').style.display = 'flex';
     }
-
-    const url = `https://www.bit-by-bit.ru/api/student-projects/tours/${currentId}`
-
-    const response = await fetch(url, {
-    method: "POST",
-    body: JSON.stringify(params)
-    })
-    const data = await response.json()
-
-    console.log(data)
-    console.log(response)
-
-    closeModalWindow()  
-    // нужно обработать входящую ошибку = null и вывести новое мод.окно, "спасибо за бронирование" try catch и написать проверку для полей "заполните все поля"
 }
 
+init();
 
-init()
-
-
-// Для фильтров 
+// Для фильтров
 // const filtredToursCity = tours.filter(tour => {
 //     return tour.city === "Пафос"
 // })
