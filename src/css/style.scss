@@ -57,6 +57,10 @@ h6 {
     @apply px-3 py-2 xl:px-4 xl:py-3 text-xs md:text-sm lg:text-base xl:text-lg border border-indigo-900 text-indigo-900 rounded-xl hover:text-white hover:bg-indigo-900;
 }
 
+.btn-secondary-filtred {
+    @apply px-3 py-1 xl:px-4 xl:py-2 text-xs lg:text-sm xl:text-base border border-indigo-900 text-indigo-900 rounded-xl hover:text-white hover:bg-indigo-900;
+}
+
 .zoom {
     zoom: 0.78;
 }

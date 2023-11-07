@@ -121,6 +121,15 @@ async function init() {
     let tours = await getData();
     renderTours(tours);
     loader();
+
+    document.getElementById('thailand').addEventListener('click', () => filterCountry(tours, 'Тайланд'))
+    document.getElementById('egypt').addEventListener('click', () => filterCountry(tours, 'Египет'))
+    document.getElementById('cyprus').addEventListener('click', () => filterCountry(tours, 'Кипр'))
+    document.getElementById('maldives').addEventListener('click', () => filterCountry(tours, 'Мальдивы'))
+    document.getElementById('indonesia').addEventListener('click', () => filterCountry(tours, 'Индонезия'))
+    document.getElementById('mexico').addEventListener('click', () => filterCountry(tours, 'Мексика'))
+    document.getElementById('tanzania').addEventListener('click', () => filterCountry(tours, 'Танзания'))
+    document.getElementById('all').addEventListener('click', () => filterCountry(tours))
 }
 
 function loader() {
@@ -274,9 +283,31 @@ async function requestBooking() {
     }
 }
 
-init();
-
 // Для фильтров
-// const filtredToursCity = tours.filter(tour => {
-//     return tour.city === "Пафос"
-// })
+function filterCountry(tours, country) {
+    if (country) {
+        const filtredTours = tours.filter((tour) => {
+            return tour.country === country
+        })
+        renderTours(filtredTours)
+        console.log(filtredTours)
+    } else {
+        renderTours(tours)
+    }     
+}
+
+// function filtredToursCity(tours, city) {
+//     const filtredTours = tours.filter((tour) => {
+//         return tour.city === city
+//     })
+//     renderTours(filtredTours)
+// }
+
+// function filtredToursRating(tours, rating) {
+//     const filtredTours = tours.filter((tour) => {
+//         return tour.rating === rating
+//     })
+//     renderTours(filtredTours)
+// }
+
+init();
