@@ -1,23 +1,30 @@
-import { format, differenceInDays } from 'date-fns'
+import { format, differenceInDays } from 'date-fns';
 import { ru } from 'date-fns/locale';
-import { Container } from 'postcss';
+
+let currentId;
+let allTours;
 
 async function getData() {
-    const respanse = await fetch('https://www.bit-by-bit.ru/api/student-projects/tours')
-    const data = await respanse.json()
+    const response = await fetch(
+        'https://www.bit-by-bit.ru/api/student-projects/tours'
+    );
+    const data = await response.json();
 
-    return data
+    allTours = data;
+    return data;
 }
 
 function renderTours(tours) {
-
-    const container =  document.getElementById('container-tours')
-    container.innerHTML =''
+    const container = document.getElementById('container-tours');
+    container.innerHTML = '';
 
     tours.forEach((tour) => {
-        const duration = differenceInDays(new Date(tour.endTime), new Date(tour.startTime))
+        const duration = differenceInDays(
+            new Date(tour.endTime),
+            new Date(tour.startTime)
+        );
 
-        container.innerHTML +=`
+        container.innerHTML += `
         <div class="overflow-hidden flex flex-col justify-between">
             <div class="p-8 relative bg-white rounded-40 h-full">
                     <img
@@ -31,8 +38,9 @@ function renderTours(tours) {
                     >
                         ${tour.country}
                     </span>
-                    ${ 
-                        tour.city !== null ? `
+                    ${
+                        tour.city !== null
+                            ? `
                         <span
                         class="text-gray-400 pt-6 px-1"
                         aria-hidden="true"
@@ -43,7 +51,8 @@ function renderTours(tours) {
                         >
                             ${tour.city}
                         </span>
-                        ` : ""
+                        `
+                            : ''
                     }
                 </div>
                 <p
@@ -56,13 +65,6 @@ function renderTours(tours) {
                 >
                     ${tour.rating}
                 </p>
-                <div class="absolute bottom-0 overflow-hidden pr-8">
-                    <img
-                        class="bg-gray-300 object-cover"
-                        src="/images/line-tickets.png"
-                        alt="Отрывная линия"
-                    />
-                </div>
             </div>
             <div class="p-8 bg-white rounded-40">
                 <div class="flex flex-col gap-1 pb-3">
@@ -70,7 +72,9 @@ function renderTours(tours) {
                         <p
                             class="font-medium text-sm md:text-base lg:text-lg text-gray-400"
                         >
-                            ${format(new Date(tour.startTime), 'dd.MM.yyyy', {locale: ru})}
+                            ${format(new Date(tour.startTime), 'dd.MM.yyyy', {
+                                locale: ru
+                            })}
                         </p>
                         <p
                             class="font-medium text-sm md:text-base lg:text-lg text-gray-400"
@@ -80,7 +84,9 @@ function renderTours(tours) {
                         <p
                             class="font-medium text-sm md:text-base lg:text-lg text-gray-400"
                         >
-                            ${format(new Date(tour.endTime), 'dd.MM.yyyy', {locale: ru})}
+                            ${format(new Date(tour.endTime), 'dd.MM.yyyy', {
+                                locale: ru
+                            })}
                         </p>
                     </div>
                     <p class="font-normal text-xs md:text-sm lg:text-base text-gray-400"> 
@@ -93,24 +99,184 @@ function renderTours(tours) {
                     ${tour.price} руб.
                 </p>
                 <div class="flex gap-3 flex-wrap">
-                    <button id="btn-booking" class="btn-primary">Забронировать</button>
+                    <button id="btn-booking-${
+                        tour.id
+                    }" class="btn-primary">Забронировать</button>
                     <button id="btn-favorites" class="btn-secondary">В избранное</button>
                 </div>
             </div>
         </div>
-        `
+        `;
+    });
+
+    tours.forEach((tour) => {
+        const btnBooking = document.getElementById(`btn-booking-${tour.id}`);
+        btnBooking.addEventListener('click', () => {
+            openModalWindowBooking(tour.id);
+        });
     });
 }
 
 async function init() {
-    let tours = await getData()
-
-    renderTours(tours)
+    let tours = await getData();
+    renderTours(tours);
+    loader();
 }
 
-init()
+function loader() {
+    const loader = document.getElementById('loader');
 
-// Для фильтров 
+    loader.classList.add('hidden');
+    setTimeout(() => {
+        loader.remove();
+    }, 1000);
+}
+
+// открыть мод.окно
+function openModalWindowBooking(id) {
+    currentId = id;
+    document.getElementById('modal-window-booking').style.display = 'flex';
+
+    const tour = allTours.find((n) => {
+        return n.id === id;
+    });
+
+    // Отрисовать тур
+    renderModalTours(tour);
+}
+
+// Открыть мод. окно успешного бронирования
+function modalWindowBookingSuccessful() {
+    document.getElementById('modal-window-booking-successful').style.display =
+        'flex';
+}
+
+function renderModalTours(tour) {
+    const containerModal = document.getElementById('tour-details');
+    containerModal.innerHTML = '';
+
+    containerModal.innerHTML += `
+        <div>
+            <img id="tourImage"
+                class="rounded-40 object-cover h-48 w-48"
+                src="${tour.image}"
+                alt="Отдых. ${tour.country}"
+            />
+        </div>  
+        <div class="flex flex-col justify-center gap-4">
+            <div>
+                <span id="tourCountry" class="montserrat text-base md:text-base lg:text-lg font-medium text-gray-900" >
+                    ${tour.country}
+                </span>
+                ${
+                    tour.city !== null
+                        ? `
+                    <span class="text-gray-900 pt-6 px-1" aria-hidden="true" >
+                    &middot;
+                    </span >
+                    <span id="tourCity" class="montserrat text-base md:text-base lg:text-lg font-medium text-gray-900 inline-block">
+                        ${tour.city}
+                    </span>
+                    `
+                        : ''
+                }
+            </div>
+            <p id="tourHotelName" class="montserrat text-lg lg:text-xl font-semibold text-indigo-900">
+                ${tour.hotelName}
+            </p>
+            <div class="flex flex-row gap-6 pt-2">
+                <div class="flex flex-col gap-1">
+                    <p class="montserrat text-xs font-medium text-gray-400">
+                        Дата начала поездки
+                    </p>
+                    <p id="tourStartTime" class="montserrat text-base md:text-base lg:text-lg font-medium text-gray-900">
+                        ${format(new Date(tour.startTime), 'dd.MM.yyyy', {
+                            locale: ru
+                        })}
+                    </p>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <p class="montserrat text-xs font-medium text-gray-400">
+                        Дата окончания поездки
+                    </p>
+                    <p id="tourEndTime" class="montserrat text-base md:text-base lg:text-lg font-medium text-gray-900">
+                        ${format(new Date(tour.endTime), 'dd.MM.yyyy', {
+                            locale: ru
+                        })}
+                    </p>
+                </div>
+            </div>
+        </div>
+        `;
+}
+
+// Очистить форму
+function clearForm() {
+    document.getElementById('customerName').value = '';
+    document.getElementById('phone').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('description').value = '';
+}
+
+// Закрыть форму
+const iconCloseModalWindow = document.getElementById('close-window-booking'); //только иконка "Закрыть"
+iconCloseModalWindow.addEventListener('click', closeModalWindow);
+
+const btnCloseModalWindow = document.getElementById('btn-close-window'); //кнопка "Закрыть"
+btnCloseModalWindow.addEventListener('click', closeModalWindow);
+
+function closeModalWindow() {
+    document.getElementById('modal-window-booking').style.display = 'none';
+    clearForm();
+}
+
+// Закрыть окно об успешн. брони
+const iconCloseModalWindowSuccessful = document.getElementById('close-window-booking-successful'); //только иконка "Закрыть"
+iconCloseModalWindowSuccessful.addEventListener('click', closeModalWindowSuccessful);
+
+const btnCloseModalWindowSuccessful = document.getElementById('btn-close-window-successful'); //кнопка "Закрыть"
+btnCloseModalWindowSuccessful.addEventListener('click', closeModalWindowSuccessful);
+
+function closeModalWindowSuccessful() {
+    document.getElementById('modal-window-booking-successful').style.display = 'none';
+}
+
+
+const btnSendData = document.getElementById('btn-send-data'); // Кнопка "Отправить"
+btnSendData.addEventListener('click', requestBooking);
+
+// Тело запроса
+async function requestBooking() {
+    const params = {
+        customerName: document.getElementById('customerName').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
+        description: document.getElementById('description').value
+    };
+
+    if (params.customerName && params.phone && params.email) {
+        const url = `https://www.bit-by-bit.ru/api/student-projects/tours/${currentId}`;
+
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(params)
+            });
+            const jsonData = await response.json();
+
+            closeModalWindow();
+            modalWindowBookingSuccessful();
+        } catch {
+            console.log('Ошибка!');
+        }
+    } else {
+        document.getElementById('error-message').style.display = 'flex';
+    }
+}
+
+init();
+
+// Для фильтров
 // const filtredToursCity = tours.filter(tour => {
 //     return tour.city === "Пафос"
 // })

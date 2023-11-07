@@ -31,6 +31,10 @@
     </head>
 
     <body>
+        <div class="loader-container" id="loader">
+            <div class="loader"></div>
+        </div>
+
         <section class="bg-slate-300 rounded-80">
             <div
                 class="container pt-10 pb-5 flex flex-col gap-3 justify-center md:gap-6 lg:pt-20 lg:pb-10 lg:flex-row lg:gap-12 items-center"
@@ -46,7 +50,125 @@
                     Отправляйтесь в свое незабываемое путешествие вместе с нами
                 </p>
             </div>
-            <div id="container-tours" class="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 xl:gap-5 pb-20">
+            <div
+                id="container-tours"
+                class="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 xl:gap-5 pb-20"
+            ></div>
+        </section>
+
+        <section
+            id="modal-window-booking"
+            class="modal-window fixed top-0 left-0 right-0 bottom-0 hidden items-center justify-center"
+        >
+            <div
+                class="h-window flex flex-col bg-white py-8 px-10 w-4/5 lg:w-1/2 rounded-40 gap-8 relative overflow-auto"
+            >
+                <i
+                    id="close-window-booking"
+                    class="fa-solid fa-xmark absolute right-10 text-gray-400 cursor-pointer"
+                ></i>
+                <p
+                    class="montserrat text-2xl lg:text-3xl xl:text-4xl font-medium text-indigo-900 text-center px-3"
+                >
+                    Проверьте информацию и заполните форму
+                </p>
+                <div
+                    id="tour-details"
+                    class="flex flex-col lg:flex-row gap-8 border-b-2 pb-8 border-indigo-100"
+                ></div>
+                <div class="flex flex-col gap-4">
+                    <div class="flex flex-col gap-1">
+                        <p class="montserrat text-sm font-medium text-gray-400">
+                            Фамилия Имя
+                        </p>
+                        <input
+                            id="customerName"
+                            type="text"
+                            placeholder="Введите фамилию и имя"
+                            class="py-3 px-4 bg-indigo-100 rounded-xl text-gray-900 outline-0 montserrat text-base"
+                        />
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <p class="montserrat text-sm font-medium text-gray-400">
+                            Телефон для связи
+                        </p>
+                        <input
+                            id="phone"
+                            type="text"
+                            placeholder="Введите телефон"
+                            class="py-3 px-4 bg-indigo-100 rounded-xl text-gray-900 outline-0 montserrat text-base"
+                        />
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <p class="montserrat text-sm font-medium text-gray-400">
+                            E-mail
+                        </p>
+                        <input
+                            id="email"
+                            type="text"
+                            placeholder="Введите e-mail"
+                            class="py-3 px-4 bg-indigo-100 rounded-xl text-gray-900 outline-0 montserrat text-base"
+                        />
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <p class="montserrat text-sm font-medium text-gray-400">
+                            Комментарий
+                        </p>
+                        <input
+                            id="description"
+                            type="text"
+                            placeholder="Введите комментарий"
+                            class="py-3 px-4 bg-indigo-100 rounded-xl text-gray-900 outline-0 montserrat text-base"
+                        />
+                    </div>
+                    <p
+                        class="montserrat text-xs font-medium text-gray-900 py-3 px-4 text-center border border-red-200 rounded-xl"
+                    >
+                        На электронную почту вам придёт подтверждение
+                        бронирования. При необходимости мы свяжемся с вами по
+                        телефону, чтобы уточнить детали.
+                    </p>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <div class="flex gap-4 justify-center">
+                        <button id="btn-send-data" class="btn-primary">
+                            Отправить
+                        </button>
+                        <button id="btn-close-window" class="btn-secondary">
+                            Закрыть
+                        </button>
+                    </div>
+                    <p
+                        class="montserrat text-xs font-medium text-gray-900 py-3 px-4 text-center"
+                    >
+                        Нажимая "Отправить" вы соглашаетесь с
+                        <a href="" class="text-indigo-600">
+                            политикой конфиденциальности
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section
+            id="modal-window-booking-successful"
+            class="modal-window fixed top-0 left-0 right-0 bottom-0 hidden items-center justify-center"
+        >
+            <div
+                class="h-window flex flex-col bg-white py-8 px-10 w-11/12 md:w-4/5 lg:w-1/2 rounded-40 gap-8 relative overflow-auto"
+            >
+                <i
+                    id="close-window-booking-successful"
+                    class="fa-solid fa-xmark absolute right-10 text-gray-400 cursor-pointer"
+                ></i>
+                <p
+                    class="montserrat text-2xl lg:text-3xl xl:text-4xl font-medium text-indigo-900 text-center pb-2 md:pb-4"
+                >
+                    Спасибо за бронирование!
+                </p>
+                <button id="btn-close-window-successful" class="btn-secondary m-auto">
+                    Закрыть
+                </button>
             </div>
         </section>
     </body>
