@@ -151,6 +151,7 @@ function modalWindowBookingSuccessful() {
         'flex';
 }
 
+// Отрисовать туры 
 function renderModalTours(tour) {
     const containerModal = document.getElementById('tour-details');
     containerModal.innerHTML = '';
@@ -240,7 +241,6 @@ btnCloseModalWindowSuccessful.addEventListener('click', closeModalWindowSuccessf
 function closeModalWindowSuccessful() {
     document.getElementById('modal-window-booking-successful').style.display = 'none';
 }
-
 
 const btnSendData = document.getElementById('btn-send-data'); // Кнопка "Отправить"
 btnSendData.addEventListener('click', requestBooking);

@@ -36,6 +36,12 @@
         </div>
 
         <section class="bg-slate-300 rounded-80">
+
+            <div class="">
+
+            </div>
+
+
             <div
                 class="container pt-10 pb-5 flex flex-col gap-3 justify-center md:gap-6 lg:pt-20 lg:pb-10 lg:flex-row lg:gap-12 items-center"
             >
@@ -77,9 +83,14 @@
                     class="flex flex-col lg:flex-row gap-8 border-b-2 pb-8 border-indigo-100"
                 ></div>
                 <div class="flex flex-col gap-4">
+                    <div id="error-message" class="hidden text-red-800 bg-red-100 rounded-xl px-4 py-2">
+                        <p>
+                            Заполните обязательные поля *
+                        </p>
+                    </div>
                     <div class="flex flex-col gap-1">
                         <p class="montserrat text-sm font-medium text-gray-400">
-                            Фамилия Имя
+                            Фамилия Имя  <span class="text-red-400">*</span>
                         </p>
                         <input
                             id="customerName"
@@ -90,7 +101,7 @@
                     </div>
                     <div class="flex flex-col gap-1">
                         <p class="montserrat text-sm font-medium text-gray-400">
-                            Телефон для связи
+                            Телефон для связи <span class="text-red-400">*</span>
                         </p>
                         <input
                             id="phone"
@@ -101,7 +112,7 @@
                     </div>
                     <div class="flex flex-col gap-1">
                         <p class="montserrat text-sm font-medium text-gray-400">
-                            E-mail
+                            E-mail <span class="text-red-400">*</span>
                         </p>
                         <input
                             id="email"
