@@ -145,6 +145,12 @@ function openModalWindowBooking(id) {
     renderModalTours(tour);
 }
 
+// Открыть мод. окно успешного бронирования
+function modalWindowBookingSuccessful() {
+    document.getElementById('modal-window-booking-successful').style.display =
+        'flex';
+}
+
 function renderModalTours(tour) {
     const containerModal = document.getElementById('tour-details');
     containerModal.innerHTML = '';
@@ -224,44 +230,23 @@ function closeModalWindow() {
     clearForm();
 }
 
-// Смена стилей для input
-// function shoowError(id) {
-//     document.getElementById(id).classList.add('input-error')
-// }
+// Закрыть окно об успешн. брони
+const iconCloseModalWindowSuccessful = document.getElementById('close-window-booking-successful'); //только иконка "Закрыть"
+iconCloseModalWindowSuccessful.addEventListener('click', closeModalWindowSuccessful);
 
-// function hideError(id) {
-//     document.getElementById(id).classList.remove('input-error')
-// }
+const btnCloseModalWindowSuccessful = document.getElementById('btn-close-window-successful'); //кнопка "Закрыть"
+btnCloseModalWindowSuccessful.addEventListener('click', closeModalWindowSuccessful);
 
-// function checkField() {
-//     if (customerName === '') {
-//         shoowError("customerName")
-//         return
-//     } else {
-//         hideError("customerName")
-//     }
+function closeModalWindowSuccessful() {
+    document.getElementById('modal-window-booking-successful').style.display = 'none';
+}
 
-//     if (phone === '') {
-//         shoowError("phone")
-//         return
-//     } else {
-//         hideError("phone")
-//     }
-
-//     if (email === '') {
-//         shoowError("email")
-//         return
-//     } else {
-//         hideError("email")
-//     }
-// }
 
 const btnSendData = document.getElementById('btn-send-data'); // Кнопка "Отправить"
 btnSendData.addEventListener('click', requestBooking);
 
 // Тело запроса
 async function requestBooking() {
-
     const params = {
         customerName: document.getElementById('customerName').value,
         phone: document.getElementById('phone').value,
@@ -280,7 +265,7 @@ async function requestBooking() {
             const jsonData = await response.json();
 
             closeModalWindow();
-            openModalWindowBookingSuccessful();
+            modalWindowBookingSuccessful();
         } catch {
             console.log('Ошибка!');
         }
