@@ -65,6 +65,23 @@ h6 {
     @apply px-3 py-1 xl:px-4 xl:py-2 text-xs lg:text-sm xl:text-base border border-indigo-900 text-indigo-900 rounded-xl hover:text-white hover:bg-indigo-900;
 }
 
+.dropdown-filtred {
+    @apply pl-3 pr-6 py-1 xl:pl-4 xl:pr-9 xl:py-2 text-xs lg:text-sm xl:text-base relative block text-left bg-white border border-indigo-200 rounded-xl focus:border-indigo-400
+}
+
+.dropdown-filtred-list {
+    @apply px-3 py-1 xl:px-4 xl:py-2 text-left bg-white border border-indigo-200 rounded-xl
+}
+
+.dropdown-text {
+    @apply pr-5 text-xs lg:text-sm xl:text-base cursor-pointer hover:text-indigo-300 text-gray-950 py-1
+}
+
+.dropdown-icon {
+    @apply absolute top-3 right-3 text-indigo-300 text-sm
+}
+
+
 .zoom {
     zoom: 0.78;
 }
