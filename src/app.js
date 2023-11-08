@@ -122,6 +122,7 @@ async function init() {
     renderTours(tours);
     loader();
 
+    // Страна для простого фильтра
     document.getElementById('thailand').addEventListener('click', () => filterCountry(tours, 'Тайланд'))
     document.getElementById('egypt').addEventListener('click', () => filterCountry(tours, 'Египет'))
     document.getElementById('cyprus').addEventListener('click', () => filterCountry(tours, 'Кипр'))
@@ -130,6 +131,21 @@ async function init() {
     document.getElementById('mexico').addEventListener('click', () => filterCountry(tours, 'Мексика'))
     document.getElementById('tanzania').addEventListener('click', () => filterCountry(tours, 'Танзания'))
     document.getElementById('all').addEventListener('click', () => filterCountry(tours))
+
+    // Страна для второго фильтра
+    document.getElementById('dropdownthailand').addEventListener('click', () => filterCountry(tours, 'Тайланд'))
+    document.getElementById('dropdownegypt').addEventListener('click', () => filterCountry(tours, 'Египет'))
+    document.getElementById('dropdowncyprus').addEventListener('click', () => filterCountry(tours, 'Кипр'))
+    document.getElementById('dropdownmaldives').addEventListener('click', () => filterCountry(tours, 'Мальдивы'))
+    document.getElementById('dropdownindonesia').addEventListener('click', () => filterCountry(tours, 'Индонезия'))
+    document.getElementById('dropdownmexico').addEventListener('click', () => filterCountry(tours, 'Мексика'))
+    document.getElementById('dropdowntanzania').addEventListener('click', () => filterCountry(tours, 'Танзания'))
+    document.getElementById('dropdownall').addEventListener('click', () => filterCountry(tours))
+
+    // Рейтинг
+    document.getElementById('aboveseven').addEventListener('click', () => filtredToursRating(tours, '7'))
+    document.getElementById('aboveeight').addEventListener('click', () => filtredToursRating(tours, '8'))
+    document.getElementById('abovenine').addEventListener('click', () => filtredToursRating(tours, '9'))
 }
 
 function loader() {
@@ -296,18 +312,16 @@ function filterCountry(tours, country) {
     }     
 }
 
-// function filtredToursCity(tours, city) {
-//     const filtredTours = tours.filter((tour) => {
-//         return tour.city === city
-//     })
-//     renderTours(filtredTours)
-// }
-
-// function filtredToursRating(tours, rating) {
-//     const filtredTours = tours.filter((tour) => {
-//         return tour.rating === rating
-//     })
-//     renderTours(filtredTours)
-// }
+function filtredToursRating(tours, rating) {
+    if (rating) {
+        const filtredTours = tours.filter((tour) => {
+            return tour.rating >= parseFloat(rating)
+        })
+        renderTours(filtredTours)
+        console.log(filtredTours)
+    } else {
+        console.log('Туры не найдены!') 
+    }    
+}
 
 init();
