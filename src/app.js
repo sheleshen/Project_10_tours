@@ -123,14 +123,17 @@ async function init() {
     loader();
 
     // Страна для простого фильтра
-    document.getElementById('thailand').addEventListener('click', () => filterCountry(tours, 'Тайланд'))
-    document.getElementById('egypt').addEventListener('click', () => filterCountry(tours, 'Египет'))
-    document.getElementById('cyprus').addEventListener('click', () => filterCountry(tours, 'Кипр'))
-    document.getElementById('maldives').addEventListener('click', () => filterCountry(tours, 'Мальдивы'))
-    document.getElementById('indonesia').addEventListener('click', () => filterCountry(tours, 'Индонезия'))
-    document.getElementById('mexico').addEventListener('click', () => filterCountry(tours, 'Мексика'))
-    document.getElementById('tanzania').addEventListener('click', () => filterCountry(tours, 'Танзания'))
-    document.getElementById('all').addEventListener('click', () => filterCountry(tours))
+    const btnCountryFilter = Array.from(document.getElementsByClassName('country-filter'))
+    btnCountryFilter.forEach(btnCountryFilter => {
+        btnCountryFilter.addEventListener('click', () => {
+            const country = btnCountryFilter.dataset.country
+            if(country === "all") {
+                filterCountry(tours)
+            } else {
+                filterCountry(tours, btnCountryFilter.dataset.country)
+            }     
+        })
+    })
 
     // Страна для второго фильтра
     document.getElementById('dropdownthailand').addEventListener('click', () => filterCountry(tours, 'Тайланд'))
@@ -140,12 +143,12 @@ async function init() {
     document.getElementById('dropdownindonesia').addEventListener('click', () => filterCountry(tours, 'Индонезия'))
     document.getElementById('dropdownmexico').addEventListener('click', () => filterCountry(tours, 'Мексика'))
     document.getElementById('dropdowntanzania').addEventListener('click', () => filterCountry(tours, 'Танзания'))
-    document.getElementById('dropdownall').addEventListener('click', () => filterCountry(tours))
 
     // Рейтинг
     document.getElementById('aboveseven').addEventListener('click', () => filtredToursRating(tours, '7'))
     document.getElementById('aboveeight').addEventListener('click', () => filtredToursRating(tours, '8'))
     document.getElementById('abovenine').addEventListener('click', () => filtredToursRating(tours, '9'))
+    // document.getElementById('aboveten').addEventListener('click', () => filtredToursRating(tours, '10'))
 }
 
 function loader() {
@@ -312,6 +315,9 @@ function filterCountry(tours, country) {
     }     
 }
 
+
+// не получилось вывести заголовок, если нет подходящих туров
+
 function filtredToursRating(tours, rating) {
     if (rating) {
         const filtredTours = tours.filter((tour) => {
@@ -319,8 +325,14 @@ function filtredToursRating(tours, rating) {
         })
         renderTours(filtredTours)
         console.log(filtredTours)
-    } else {
-        console.log('Туры не найдены!') 
+    } else { 
+        const titleError = document.getElementById('container-tours');
+        titleError.innerHTML = '';
+        titleError.innerHTML = `
+            <h2>
+                Туры не найдены 
+            </h2>
+        `;
     }    
 }
 

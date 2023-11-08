@@ -55,28 +55,28 @@
             <!-- Фильтры №1 простой -->
             <div class="container overflow-hidden">
                 <div class="bg-white rounded-40 py-8 px-10 flex flex-wrap gap-3 mb-3">
-                    <button id="thailand" class="btn-secondary-filtred montserrat">
+                    <button id="thailand" class="country-filter btn-secondary-filtred montserrat" data-country="Тайланд">
                         Тайланд
                     </button>
-                    <button id="egypt" class="btn-secondary-filtred montserrat">
+                    <button id="egypt" class="country-filter btn-secondary-filtred montserrat" data-country="Египет">
                         Египет
                     </button>
-                    <button id="cyprus" class="btn-secondary-filtred montserrat">
+                    <button id="cyprus" class="country-filter btn-secondary-filtred montserrat" data-country="Кипр">
                         Кипр 
                     </button>
-                    <button id="maldives" class="btn-secondary-filtred montserrat">
+                    <button id="maldives" class="country-filter btn-secondary-filtred montserrat" data-country="Мальдивы">
                         Мальдивы 
                     </button>
-                    <button id="indonesia" class="btn-secondary-filtred montserrat">
+                    <button id="indonesia" class="country-filter btn-secondary-filtred montserrat" data-country="Индонезия">
                         Индонезия 
                     </button>
-                    <button id="mexico" class="btn-secondary-filtred montserrat">
+                    <button id="mexico" class="country-filter btn-secondary-filtred montserrat" data-country="Мексика">
                         Мексика 
                     </button>
-                    <button id="tanzania" class="btn-secondary-filtred montserrat">
+                    <button id="tanzania" class="country-filter btn-secondary-filtred montserrat" data-country="Танзания">
                         Танзания 
                     </button>
-                    <button id="all" class="btn-primary-filtred montserrat">
+                    <button id="all" class="country-filter btn-primary-filtred montserrat" data-country="all">
                         Сбросить
                     </button>
                 </div>
@@ -120,6 +120,9 @@
                             <i class="fa-solid fa-chevron-down dropdown-icon"></i>
                         </button>
                         <ul class="dropdown-filtred-list">
+                            <!-- <li id="aboveten" class="dropdown-text">
+                                10
+                            </li> -->
                             <li id="abovenine" class="dropdown-text">
                                 Выше 9
                             </li>
@@ -167,9 +170,14 @@
                     class="flex flex-col lg:flex-row gap-8 border-b-2 pb-8 border-indigo-100"
                 ></div>
                 <div class="flex flex-col gap-4">
+                    <div id="error-message" class="hidden text-red-800 bg-red-100 rounded-xl px-4 py-2">
+                        <p>
+                            Заполните обязательные поля *
+                        </p>
+                    </div>
                     <div class="flex flex-col gap-1">
                         <p class="montserrat text-sm font-medium text-gray-400">
-                            Фамилия Имя
+                            Фамилия Имя <span class="text-red-400">*</span>
                         </p>
                         <input
                             id="customerName"
@@ -180,7 +188,7 @@
                     </div>
                     <div class="flex flex-col gap-1">
                         <p class="montserrat text-sm font-medium text-gray-400">
-                            Телефон для связи
+                            Телефон для связи <span class="text-red-400">*</span>
                         </p>
                         <input
                             id="phone"
@@ -191,7 +199,7 @@
                     </div>
                     <div class="flex flex-col gap-1">
                         <p class="montserrat text-sm font-medium text-gray-400">
-                            E-mail
+                            E-mail <span class="text-red-400">*</span>
                         </p>
                         <input
                             id="email"
