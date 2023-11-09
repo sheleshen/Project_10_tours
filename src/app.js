@@ -134,6 +134,10 @@ async function init() {
     document.getElementById('tanzania').addEventListener('click', () => filterCountry(tours, 'Танзания'))
 
     // Страна для второго фильтра
+    document.getElementById('btnCountList').addEventListener('click', () => {
+        document.getElementById("countList").style.display = 'flex';
+    })
+
     const btnCountryFilter = Array.from(document.getElementsByClassName('country-filter'))
     btnCountryFilter.forEach(btnCountryFilter => {
         btnCountryFilter.addEventListener('click', () => {

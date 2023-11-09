@@ -83,46 +83,48 @@
             </div>
 
             <!-- Фильтр №2 дропдаун -->
-            <div class="container overflow-hidden">
+            <div class="container">
                 <div class="bg-white rounded-40 py-8 px-10 flex flex-wrap gap-3 mb-3">
                     <div class="flex flex-col relative">
-                        <button id="" class="dropdown-filtred montserrat max-w-170">
+                        <button id="btnCountList" class="dropdown-filtred montserrat max-w-170">
                             Страна
                             <i class="fa-solid fa-chevron-down dropdown-icon"></i>
                         </button>
-                        <ul class="dropdown-filtred-list max-w-170">
-                            <li id="dropdowncount" class="dropdown-text country-filter" data-country="all">
-                                Любая
-                            </li>
-                            <li id="dropdownthailand" class="dropdown-text country-filter" data-country="Тайланд">
-                                Тайланд
-                            </li>
-                            <li id="dropdownegypt" class="dropdown-text country-filter" data-country="Египет">
-                                Египет
-                            </li>
-                            <li id="dropdowncyprus" class="dropdown-text country-filter" data-country="Кипр">
-                                Кипр 
-                            </li>
-                            <li id="dropdownmaldives" class="dropdown-text country-filter" data-country="Мальдивы">
-                                Мальдивы 
-                            </li>
-                            <li id="dropdownindonesia" class="dropdown-text country-filter" data-country="Индонезия">
-                                Индонезия 
-                            </li>
-                            <li id="dropdownmexico" class="dropdown-text country-filter" data-country="Мексика">
-                                Мексика 
-                            </li>
-                            <li id="dropdowntanzania" class="dropdown-text country-filter" data-country="Танзания">
-                                Танзания 
-                            </li>
-                        </ul>
+                        <div id="countList" class="hidden dropdown-filtred-list max-w-170 absolute left-0 top-11 z-10">
+                            <ul>
+                                <li id="dropdowncount" class="dropdown-text country-filter" data-country="all">
+                                    Любая
+                                </li>
+                                <li id="dropdownthailand" class="dropdown-text country-filter" data-country="Тайланд">
+                                    Тайланд
+                                </li>
+                                <li id="dropdownegypt" class="dropdown-text country-filter" data-country="Египет">
+                                    Египет
+                                </li>
+                                <li id="dropdowncyprus" class="dropdown-text country-filter" data-country="Кипр">
+                                    Кипр 
+                                </li>
+                                <li id="dropdownmaldives" class="dropdown-text country-filter" data-country="Мальдивы">
+                                    Мальдивы 
+                                </li>
+                                <li id="dropdownindonesia" class="dropdown-text country-filter" data-country="Индонезия">
+                                    Индонезия 
+                                </li>
+                                <li id="dropdownmexico" class="dropdown-text country-filter" data-country="Мексика">
+                                    Мексика 
+                                </li>
+                                <li id="dropdowntanzania" class="dropdown-text country-filter" data-country="Танзания">
+                                    Танзания 
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="flex flex-col relative">
                         <button id="btnRatingList" class="dropdown-filtred montserrat max-w-170">
                             Рейтинг
                             <i class="fa-solid fa-chevron-down dropdown-icon"></i>
                         </button>
-                        <div id="ratingList" class="hidden dropdown-filtred-list max-w-170">
+                        <div id="ratingList" class="hidden dropdown-filtred-list max-w-170 absolute left-0 top-11 z-10">
                             <ul>
                                 <!-- <li id="aboveten" class="dropdown-text">
                                     10
@@ -144,7 +146,7 @@
                             Цена
                             <i class="fa-solid fa-chevron-down dropdown-icon"></i>
                         </button>
-                        <div id="priceList" class="hidden max-w-170 px-3 py-1 xl:px-4 xl:py-2 text-left bg-white border border-indigo-200 rounded-xl overflow-hidden">
+                        <div id="priceList" class="absolute left-0 top-11 hidden max-w-170 px-3 py-1 xl:px-4 xl:py-2 text-left bg-white border border-indigo-200 rounded-xl overflow-hidden z-10">
                             <div class="flex flex-col gap-2 justify-start">
                                 <input id="minPrice" type="text" placeholder="Цена от" class="bg-white outline-none text-xs lg:text-sm xl:text-base max-w-150">
                                 <input id="maxPrice" type="text" placeholder="Цена до" class="bg-white outline-none text-xs lg:text-sm xl:text-base max-w-150">
