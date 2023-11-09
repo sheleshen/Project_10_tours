@@ -53,6 +53,10 @@ h6 {
     @apply px-3 py-2 xl:px-4 xl:py-3 text-xs md:text-sm lg:text-base xl:text-lg text-white bg-indigo-900 rounded-xl hover:bg-indigo-950;
 }
 
+.btn-primary-price {
+    @apply px-2 py-2 xl:px-3 text-xs md:text-sm text-white bg-indigo-900 rounded-xl hover:bg-indigo-950;
+}
+
 .btn-primary-filtred {
     @apply px-3 py-2 xl:px-4 xl:py-3 text-xs lg:text-sm xl:text-base text-white bg-indigo-900 rounded-xl hover:bg-indigo-950;
 }
@@ -123,4 +127,12 @@ h6 {
 
 .input-error {
     border: solid 1px #d84e4e;
+}
+
+.max-w-170 {
+    width: 200px;
+}
+
+.max-w-150 {
+    width: 150px;
 }
